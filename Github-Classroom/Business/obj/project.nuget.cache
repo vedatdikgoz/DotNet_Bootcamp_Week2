@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "SZTNb/KQ8+Ft6tr706JS4mpF3t1s6DAfR0zypwH2wWa4iiIxsl5WJScIt9syvl4BdC2eX6nT3zsSk+JfhUJ6ng==",
+  "dgSpecHash": "dhecWF2TZ7okBa1GY1ezBaiNt8FWmUMYRf8x2JUK+44jrVqna/AvS1hB+89VcoGxAnW6j/R5ygbpWQm6HkYONg==",
   "success": true,
   "projectFilePath": "C:\\Users\\vedat\\source\\repos\\week-2-assigment-vedatdikgoz\\Github-Classroom\\Business\\Business.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\vedat\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\vedat\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\vedat\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\vedat\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\vedat\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\vedat\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.5\\microsoft.entityframeworkcore.6.0.5.nupkg.sha512",

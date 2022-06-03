@@ -1,4 +1,7 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -8,38 +11,47 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         private readonly IProductRepository _productRepository;
-        public ProductManager(IProductRepository productRepository)
+        private readonly IMapper _mapper;
+        public ProductManager(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
-        public void Add(Product product)
+        public async Task<IResult> AddAsync(Product product)
         {
-            _productRepository.Add(product);
-        }
-
-        public void Delete(Product product)
-        {
-            _productRepository.Delete(product);
+            await _productRepository.AddAsync(product);
+            return new SuccessResult(Messages.ProductAdded);
         }
 
-        public Product GetById(int id)
+        public async Task<IResult> DeleteAsync(Product product)
         {
-            return _productRepository.Get(p=>p.Id==id);
+            await _productRepository.DeleteAsync(product);
+            return new SuccessResult(Messages.ProductDeleted);
         }
 
-        public List<Product> GetAll()
+        public async Task<IDataResult<Product>> GetByIdAsync(int id)
         {
-            return _productRepository.GetAll();
+            var product= await _productRepository.GetAsync(p=>p.Id==id);
+            return new SuccessDataResult<Product>(product, Messages.ProductListed);
         }
 
-        public void Update(Product product)
+        public async Task<IDataResult<List<Product>>> GetAllAsync()
         {
-            _productRepository.Update(product);
+            var products= await _productRepository.GetAllAsync();
+            return new SuccessDataResult<List<Product>>(products, Messages.ProductsListed);
         }
 
-        public List<ProductDto> GetAllProductsWithCategory()
+        public async Task<IResult> UpdateAsync(Product product)
         {
-            return _productRepository.GetAllProductsWithCategory();
+            await _productRepository.UpdateAsync(product);
+            return new SuccessResult(Messages.ProductUpdated);
+        }
+
+        public async Task<IDataResult<List<ProductDto>>> GetAllProductsWithCategoryAsync()
+        {
+            var result= await _productRepository.GetAllProductsWithCategoryAsync();
+            return new SuccessDataResult<List<ProductDto>>(result, Messages.ProductsWithCategoryListed);
+            
         }
     }
 }

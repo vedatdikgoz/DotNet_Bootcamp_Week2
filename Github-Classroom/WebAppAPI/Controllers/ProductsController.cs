@@ -17,18 +17,18 @@ namespace WebAppAPI.Controllers
         }
 
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var products = _productService.GetAll();
+            var products =await _productService.GetAllAsync();
             return Ok(products);
         }
 
 
         //ürünleri kategori isimleri ile listeleme
         [HttpGet("getallproductswithcategory")]
-        public IActionResult GetAllProductsWithCategory()
+        public async Task<IActionResult> GetAllProductsWithCategory()
         {
-            var products = _productService.GetAllProductsWithCategory();
+            var products = await _productService.GetAllProductsWithCategoryAsync();
             return Ok(products);
         }
 
@@ -36,33 +36,33 @@ namespace WebAppAPI.Controllers
 
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var product = _productService.GetById(id);          
+            var product = await _productService.GetByIdAsync(id);          
             return Ok(product);
            
         }
 
         [HttpPost]
-        public IActionResult Add(Product product)
+        public async Task<IActionResult> Add(Product product)
         {
-            _productService.Add(product);           
+            await _productService.AddAsync(product);           
             return Ok();
 
         }
 
         [HttpPut]
-        public IActionResult Update(Product product)
+        public async Task<IActionResult> Update(Product product)
         {
-            _productService.Update(product);
+            await _productService.UpdateAsync(product);
             return Ok();
 
         }
 
         [HttpDelete]
-        public IActionResult Delete(Product product)
+        public async Task<IActionResult> Delete(Product product)
         {
-            _productService.Delete(product);
+            await _productService.DeleteAsync(product);
             return Ok();
 
         }

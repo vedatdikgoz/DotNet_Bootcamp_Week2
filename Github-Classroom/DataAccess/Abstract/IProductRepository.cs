@@ -11,6 +11,6 @@ namespace DataAccess.Abstract
 {
     public interface IProductRepository : IEntityRepository<Product>
     {
-        List<ProductDto> GetAllProductsWithCategory();
+        Task<List<ProductDto>> GetAllProductsWithCategoryAsync();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,13 @@ namespace Business.Abstract
 {
     public interface IProductService
     {
-        List<Product> GetAll();
-        Product GetById(int id);
-        void Add(Product product);
-        void Update(Product product);
-        void Delete(Product product);
+        Task<IDataResult<List<Product>>> GetAllAsync();
+        Task<IDataResult<Product>> GetByIdAsync(int id);
+        Task<IResult> AddAsync(Product product);
+        Task<IResult> UpdateAsync(Product product);
+        Task<IResult> DeleteAsync(Product product);
 
-        List<ProductDto> GetAllProductsWithCategory();
+        Task<IDataResult<List<ProductDto>>> GetAllProductsWithCategoryAsync();
 
     }
 }

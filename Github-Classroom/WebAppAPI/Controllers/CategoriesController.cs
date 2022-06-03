@@ -17,37 +17,37 @@ namespace WebAppAPI.Controllers
 
 
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var categories=_categoryService.GetAll();
+            var categories= await _categoryService.GetAllAsync();
             return Ok(categories);
         }
 
         [HttpGet("getbyid")]
-        public IActionResult Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            var category =_categoryService.GetById(id);
+            var category = await _categoryService.GetByIdAsync(id);
             return Ok(category);
         }
 
         [HttpPost]
-        public IActionResult Add(Category category)
+        public async Task<IActionResult> Add(Category category)
         {
-            _categoryService.Add(category);
+            await _categoryService.AddAsync(category);
             return Ok();
         }
 
         [HttpPut]
-        public IActionResult Update(Category category)
+        public async Task<IActionResult> Update(Category category)
         {
-            _categoryService.Update(category);
+            await _categoryService.UpdateAsync(category);
             return Ok();
         }
 
         [HttpDelete]
-        public IActionResult Delete(Category category)
+        public async Task<IActionResult> Delete(Category category)
         {
-            _categoryService.Delete(category);
+            await _categoryService.DeleteAsync(category);
             return Ok();
         }
     }

@@ -1,11 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
@@ -16,29 +13,33 @@ namespace Business.Concrete
         {
             _categoryRepository = categoryRepository;
         }
-        public void Add(Category category)
+        public async Task<IResult> AddAsync(Category category)
         {
-            _categoryRepository.Add(category);
+            await _categoryRepository.AddAsync(category);
+            return new SuccessResult(Messages.CategoryAdded);
         }
 
-        public void Delete(Category category)
+        public async Task<IResult> DeleteAsync(Category category)
         {
-            _categoryRepository.Delete(category);   
+            await _categoryRepository.DeleteAsync(category);
+            return new SuccessResult(Messages.CategoryDeleted);
         }
 
-        public List<Category> GetAll()
+        public async Task<IDataResult<List<Category>>> GetAllAsync()
         {
-            return _categoryRepository.GetAll();    
+            var categories= await _categoryRepository.GetAllAsync();
+            return new SuccessDataResult<List<Category>>(categories, Messages.CategoriesListed);   
         }
 
-        public Category GetById(int id)
-        {
-            return _categoryRepository.Get(c => c.Id == id);
+        public async Task<IDataResult<Category>> GetByIdAsync(int id)
+        {           
+            return new SuccessDataResult<Category>(await _categoryRepository.GetAsync(c => c.Id == id), Messages.CategoryListed);
         }
 
-        public void Update(Category category)
+        public async Task<IResult> UpdateAsync(Category category)
         {
-            _categoryRepository.Update(category);
+            await _categoryRepository.UpdateAsync(category);
+            return new SuccessResult(Messages.CategoryUpdated);
         }
     }
 }

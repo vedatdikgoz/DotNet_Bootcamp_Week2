@@ -3,12 +3,13 @@ using DataAccess.Abstract;
 using DataAccess.Concrete.Context;
 using Entities.Concrete;
 using Entities.DTOs;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProductRepository : EfEntityRepositoryBase<Product, DataContext>, IProductRepository
     {
-        public List<ProductDto> GetAllProductsWithCategory()
+        public async Task<List<ProductDto>> GetAllProductsWithCategoryAsync()
         {
             using(var context = new DataContext())
             {
@@ -24,7 +25,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  UnitPrice = p.UnitPrice,
                                  Amount = p.Amount,
                              };
-              return result.ToList();
+              return await result.ToListAsync();
             }
         }
     }
