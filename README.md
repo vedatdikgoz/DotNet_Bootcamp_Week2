@@ -1,6 +1,5 @@
 # week-2-assignment
 
-Öncelikle boş bir solution açıp ödevler bunun içinde yapılacak.
 
 ## ÖDEV 1 : EF Core API (CRUD) 
 - Bir API projesi oluşturulacak
